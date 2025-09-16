@@ -1,0 +1,4 @@
+takacskristaly.hu, www.takacskristaly.hu {
+    reverse_proxy grav:80
+}
+

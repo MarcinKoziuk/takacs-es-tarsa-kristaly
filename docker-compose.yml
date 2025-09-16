@@ -8,6 +8,15 @@ services:
     volumes:
       - ./app-state/user:/config/www/user
       - ./app-state/logs:/config/www/logs
-    ports:
-      - 80:80
     restart: unless-stopped
+
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./app-state/caddy/data:/data
+      - ./app-state/caddy/config:/config
