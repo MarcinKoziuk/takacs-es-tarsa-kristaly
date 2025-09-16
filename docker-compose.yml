@@ -1,0 +1,13 @@
+services:
+  grav:
+    image: lscr.io/linuxserver/grav:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ./app-state/user:/config/www/user
+      - ./app-state/logs:/config/www/logs
+    ports:
+      - 80:80
+    restart: unless-stopped

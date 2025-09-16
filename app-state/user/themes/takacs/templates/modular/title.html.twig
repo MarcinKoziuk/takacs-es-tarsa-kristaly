@@ -1,0 +1,21 @@
+{% block content %}
+    {{ page.content|raw }}
+{% endblock %}
+
+<section id="{{ page.slug }}" class="title" >
+    <div class="title-flex flex-desktop">
+        <div class="title-main title-text">
+            <div class="title-text-top">{{ page.title }}</div>
+            <div class="title-text-1">“{{ page.header.subtitle1 }}</div>
+            <div class="title-text-2">{{ page.header.subtitle2 }}</div>
+            <div class="title-text-3">{{ page.header.subtitle3 }},</div>
+            <div class="title-text-sub">{{ page.header.subtitle4 }}”</div>
+        </div>
+        <div class="title-picture">
+            <img src="{{ page.media[page.header.image].url }}" alt="" />
+        </div>
+    </div>
+    <div class="title-button">
+        <a href="{{ page.header.button_link }}" class="button">{{ page.header.button_text }}</a>
+    </div>
+</section>

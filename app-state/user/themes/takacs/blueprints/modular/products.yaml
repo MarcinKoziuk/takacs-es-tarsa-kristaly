@@ -1,0 +1,40 @@
+title: Products
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        content:
+          type: tab
+          title: Content
+
+          fields:
+            header.products:
+              name: products
+              type: list
+              label: Products
+              style: vertical
+              fields:
+                .image:
+                  type: filepicker
+                  folder: '@self'
+                  label: Product Image
+                  preview_images: true
+                .alt:
+                  type: text
+                  label: Alt text
+                .category:
+                  type: text
+                  label: Category
+                .name:
+                  type: text
+                  label: Name
+                .description:
+                  type: textarea
+                  label: Description

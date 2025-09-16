@@ -1,0 +1,7 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    <section id="{{ page.slug }}" class="default-section">
+        {{ page.content|raw }}
+    </section>
+{% endblock %}

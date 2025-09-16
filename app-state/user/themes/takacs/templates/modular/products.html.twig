@@ -1,0 +1,24 @@
+<section id="{{ page.slug }}" class="produkts content-block"> 
+  <div class="produkts-title">
+    <h1>{{ page.title }}</h1>
+    <span class="title-separator"></span>
+    {% block content %}
+        {{ page.content|raw }}
+    {% endblock %}
+  </div>
+
+  <div class="produkts-grid">
+    {% for produkt in page.header.products %}
+      <div class="produkt">
+        {% if produkt.image and page.media[produkt.image] %}
+            <img src="{{ page.media[produkt.image].url }}" alt="{{ produkt.name }}" />
+        {% endif %}
+        {% if produkt.category %}<h2>{{ produkt.category }}</h2>{% endif %}
+            <h1>{{ produkt.name }}</h1>
+        {% if produkt.description %}
+          <p>{{ produkt.description }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>

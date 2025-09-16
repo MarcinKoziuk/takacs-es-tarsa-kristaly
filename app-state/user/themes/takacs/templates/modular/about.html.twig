@@ -1,0 +1,22 @@
+<section id="{{ page.slug }}" class="about">
+    <div class="about-inner">
+        <div class="about-top">
+            <h1>{{ page.title }}</h1>
+            {% block content %}
+                {{ page.content|raw }}
+            {% endblock %}
+        </div>
+
+        <div class="about-processes flex-desktop">
+            {% for process in page.header.items %}
+                <div class="about-process">
+                    {% if process.image and page.media[process.image] %}
+                        <img class="parralax" src="{{ page.media[process.image].url }}" alt="{{ process.title|e }}" />
+                    {% endif %}
+                    <h2>{{ process.title }}</h2>
+                    <p>{{ process.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

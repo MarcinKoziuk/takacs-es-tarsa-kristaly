@@ -1,0 +1,25 @@
+title: About
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    header.items:
+      type: list
+      label: About items
+      style: vertical
+      fields:
+        .image:
+          type: filepicker
+          folder: '@self'
+          label: Image
+          review_images: true
+
+        .title:
+          type: text
+          label: Title
+
+        .description:
+          type: textarea
+          label: Description

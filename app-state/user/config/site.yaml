@@ -1,0 +1,19 @@
+title: 'Takács és Társa Kristály Kft.'
+default_lang: hu
+author:
+  name: 'Takács László'
+  email: moltenglasseger@gmail.com
+taxonomies:
+  - category
+  - tag
+metadata:
+  description: ''
+summary:
+  enabled: true
+  format: short
+  size: 300
+  delimiter: '==='
+redirects: null
+routes: null
+blog:
+  route: /blog

@@ -1,0 +1,174 @@
+<!doctype html>
+<html data-scroll="0" lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
+    <head>
+        {% block head %}
+            <meta charset="utf-8">
+            <title>Takács és Társa Kristály Kft.</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="High-quality handcrafted crystal glassware made in Hungary.">
+            <meta name="author" content="Takács és Társa Kristály Kft.">
+        {% endblock head %}
+
+        {% block stylesheets %}
+            {% do assets.addCss('theme://css/style.css?8', 98) %}
+        {% endblock %}
+
+        {% block assets deferred %}
+            {{ assets.css()|raw }}
+            {{ assets.js()|raw }}
+        {% endblock %}
+    </head>
+    <bod>
+        <header class="header">
+            {% block header %}
+                <nav class="header-nav">
+                    <div class="header-title">
+                        <button class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <a href="#" class="header-company-title">
+                            Takács és Társa Kristály Kft.
+                        </a>
+                    </div>
+                    <ul>
+                        {% set landing = pages.find('/home') %}
+
+                        {# 1. landing page link #}
+                        {% if landing %}
+                            <li class="item{% if landing.active %} active{% endif %}">
+                                <a href="{{ landing.url }}">{{ landing.menu ?: landing.title }}</a>
+                            </li>
+
+                            {# 2. modular sections as anchors #}
+                            {% for module in landing.collection() %}
+                                {% if not module.header.exclude_from_nav %}
+                                    <li class="item">
+                                        <a href="{{ landing.url }}#{{ module.slug }}">
+                                            {{ module.menu ?: module.title }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {# 3. other non-modular pages #}
+                        {% for page in pages.children.visible %}
+                            {% if page.route != landing.route and not page.modular and not page.header.exclude_from_nav %}
+                                <li class="item{% if page.active or page.activeChild %} active{% endif %}">
+                                <a href="{{ page.url }}">{{ page.menu }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        <li class="lang-switch">
+                        {% for lang in grav.language.getLanguages %}
+                            {% set active = (grav.language.getActive == lang) ? 'is-active' : '' %}
+                            <a href="/{{ lang }}/home" class="{{ active }}">
+                                <img alt="{{ lang|upper }}" src="{{ url('theme://images/' ~ (lang == 'en' ? 'gb' : lang) ~ '.svg')|e }}" />
+                            </a>
+                        {% endfor %}
+                        </li>
+                    </ul>
+                </nav>
+            {% endblock %}
+        </header>
+        <main>
+            {% block main %}
+                {% block content %}
+                {% endblock %}
+            {% endblock %}
+            
+            {% block footer %}
+                <section id="footer" class="footer">
+                    <div class="socials">
+                        <a href="#" title="facebook" class="social-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95"/></svg>
+                        </a>
+                        <a href="#" title="google" class="social-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12.037 21.998a10.3 10.3 0 0 1-7.168-3.049a9.9 9.9 0 0 1-2.868-7.118a9.95 9.95 0 0 1 3.064-6.949A10.37 10.37 0 0 1 12.212 2h.176a9.94 9.94 0 0 1 6.614 2.564L16.457 6.88a6.2 6.2 0 0 0-4.131-1.566a6.9 6.9 0 0 0-4.794 1.913a6.62 6.62 0 0 0-2.045 4.657a6.6 6.6 0 0 0 1.882 4.723a6.9 6.9 0 0 0 4.725 2.07h.143c1.41.072 2.8-.354 3.917-1.2a5.77 5.77 0 0 0 2.172-3.41l.043-.117H12.22v-3.41h9.678q.113.927.1 1.859c-.099 5.741-4.017 9.6-9.746 9.6l-.215-.002Z" clip-rule="evenodd"/></svg>
+                        </a>
+                    </div>
+                    <div class="copyright flex-desktop">
+                        <div>
+                            Website by <a href="https://www.linkedin.com/in/marcin-koziuk-980a2593" target="_blank">Marcin Koziuk</a>.
+                        </div>
+                        <div>
+                            © {{ "now"|date("Y") }} Takács és Társa Kristály Kft.
+                        </div>
+                    </div>
+                </section>
+            {% endblock %}
+        </main>
+
+        <script>
+			// The debounce function receives our function as a parameter
+			const debounce = (fn) => {
+
+				// This holds the requestAnimationFrame reference, so we can cancel it if we wish
+				let frame;
+
+				// The debounce function returns a new function that can receive a variable number of arguments
+				return (...params) => {
+
+					// If the frame variable has been defined, clear it now, and queue for next frame
+					if (frame) {
+						cancelAnimationFrame(frame);
+					}
+
+					// Queue our function call for the next frame
+					frame = requestAnimationFrame(() => {
+
+						// Call our function and pass any params we received
+						fn(...params);
+					});
+
+				}
+			};
+
+
+			// Reads out the scroll position and stores it in the data attribute
+			// so we can use it in our stylesheets
+			const storeScroll = () => {
+				const scrollY = window.scrollY
+				document.documentElement.dataset.scroll = scrollY.toString();
+                document.documentElement.dataset.scrollThreshold = scrollY > 400 ? 'true' : 'false';
+
+				const elements = document.querySelectorAll(".parralax-bg");
+				elements.forEach(element => {
+					const factor = parseFloat(element.dataset.parralaxFactor);
+					const initial = parseInt(element.dataset.parralaxInitial) || 0;
+
+					element.style.backgroundPositionY = initial + (scrollY * -factor) + 'px';
+                })
+			}
+
+			// Listen for new scroll events, here we debounce our `storeScroll` function
+			document.addEventListener('scroll', debounce(storeScroll), { passive: true });
+
+            const header = document.querySelector('header');
+            document.documentElement.style.setProperty("--header-height", `${header.clientHeight}px`);
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/ukiyojs@3.0.1/dist/ukiyo.min.js"></script>
+        <script>
+			const images = document.querySelectorAll(".parralax");
+			images.forEach(image => {
+				new Ukiyo(image, {
+					speed: 2,
+					scale: 1.25
+				});
+			});
+        </script>
+        <script>
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.header-nav ul');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('show');
+            });
+        </script>
+    </body>
+</html>
