@@ -6,19 +6,29 @@
         {{ page.content|raw }}
     {% endblock %}
   </div>
-
-  <div class="produkts-grid">
-    {% for produkt in page.header.products %}
-      <div class="produkt">
-        {% if produkt.image and page.media[produkt.image] %}
-            <img src="{{ page.media[produkt.image].url }}" alt="{{ produkt.name }}" />
-        {% endif %}
-        {% if produkt.category %}<h2>{{ produkt.category }}</h2>{% endif %}
-            <h1>{{ produkt.name }}</h1>
-        {% if produkt.description %}
-          <p>{{ produkt.description }}</p>
-        {% endif %}
-      </div>
-    {% endfor %}
+  <div class="carousel-wrapper">
+    <div class="f-carousel carousel">
+      {% for produkt in page.header.products %}
+        <figure
+            class="f-carousel__slide"
+            data-fancybox="gallery"
+            data-src="{{ page.media[produkt.image].url }}"
+            data-thumb-src="{{ page.media[produkt.image].url }}"
+            >
+          <img
+              data-lazy-src="{{ page.media[produkt.image].url }}"
+              alt="{{ produkt.name }}"
+              />
+          <figcaption>
+            {% if produkt.category %}<h4>{{ produkt.category }}</h4>{% endif %}
+            <h4>{{ produkt.name }}</h4>
+            {% if produkt.description %}
+              <p>{{ produkt.description }}</p>
+            {% endif %}
+          </figcaption>
+        </figure>
+      {% endfor %}
+    </div>
   </div>
+
 </section>

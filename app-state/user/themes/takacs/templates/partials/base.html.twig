@@ -151,16 +151,6 @@
             document.documentElement.style.setProperty("--header-height", `${header.clientHeight}px`);
         </script>
 
-        <script src="https://cdn.jsdelivr.net/npm/ukiyojs@3.0.1/dist/ukiyo.min.js"></script>
-        <script>
-			const images = document.querySelectorAll(".parralax");
-			images.forEach(image => {
-				new Ukiyo(image, {
-					speed: 2,
-					scale: 1.25
-				});
-			});
-        </script>
         <script>
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.header-nav ul');
@@ -170,5 +160,69 @@
                 navMenu.classList.toggle('show');
             });
         </script>
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.css"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.lazyload.css"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.arrows.css"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.thumbs.css"
+            />
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.lazyload.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.arrows.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.thumbs.umd.js"></script>
+        <style type="text/css">
+            :root {
+                --f-thumb-width: 120px;
+                --f-thumb-clip-width: 100px;
+                --f-thumb-height: 180px;
+                --f-thumb-bg: black;
+            }
+        </style>
+        <script>
+            document.querySelectorAll('.carousel').forEach(car => {
+                Carousel(car, {
+                    // Your custom options
+                    Thumbs: {
+                        type: "modern",
+                    }
+                }, {
+                    Lazyload,
+                    Arrows,
+                    Thumbs
+                }).init()
+            })
+
+
+            Fancybox.bind("[data-fancybox]", {
+                
+                // Your custom options
+                Carousel: {
+                    Thumbs: {
+                        showOnStart: false,
+                        type: "modern",
+                    },
+                    formatCaption: (_carouselRef, slide) => {
+                        return slide.triggerEl?.querySelector('figcaption') || "";
+                    }
+                }
+            })
+        </script>
+
     </body>
 </html>
