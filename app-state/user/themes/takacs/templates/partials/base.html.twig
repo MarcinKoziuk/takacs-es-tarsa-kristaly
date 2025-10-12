@@ -29,7 +29,7 @@
         {% endblock head %}
 
         {% block stylesheets %}
-            {% do assets.addCss('theme://css/style.css?8', 98) %}
+            {% do assets.addCss('theme://css/style.css?9', 98) %}
         {% endblock %}
 
         {% block assets deferred %}
@@ -37,7 +37,7 @@
             {{ assets.js()|raw }}
         {% endblock %}
     </head>
-    <bod>
+    <body>
         <header class="header">
             {% block header %}
                 <nav class="header-nav">
