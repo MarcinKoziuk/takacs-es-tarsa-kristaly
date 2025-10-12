@@ -13,7 +13,7 @@
             class="f-carousel__slide"
             data-fancybox="gallery"
             data-src="{{ page.media[produkt.image].url }}"
-            data-thumb-src="{{ page.media[produkt.image].url }}"
+            data-thumb-src="{{ page.media[produkt.image].resize(120, 180).url }}"
             >
           <img
               data-lazy-src="{{ page.media[produkt.image].url }}"
