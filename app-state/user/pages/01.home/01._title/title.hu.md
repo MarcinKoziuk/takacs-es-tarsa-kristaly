@@ -1,12 +1,12 @@
 ---
-title: 'Title In Hungarian'
-subtitle1: Quality
-subtitle2: Reliability
-subtitle3: Tradition
-subtitle4: '...and a good amount of enthusiasm to create wonders out of sheer expertise'
+title: 'Üvegcsiszolás, Gravírozás, Asztali üvegolvasztás'
+subtitle1: Márka
+subtitle2: Minőség
+subtitle3: 'Jó ízlés'
+subtitle4: '... jó adag lelkesedés, szakértelem és elhivatottság, mely által csodák készülnek !'
 exclude_from_nav: true
 image: vase@0.5x.jpg
-button_text: 'Explore in Hungarian'
+button_text: Felfedez
 button_link: '#_products'
 ---
 

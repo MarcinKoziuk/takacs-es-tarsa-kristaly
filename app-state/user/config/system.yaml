@@ -24,7 +24,7 @@ languages:
   translations: true
   translations_fallback: true
   session_store_active: false
-  http_accept_language: false
+  http_accept_language: true
   override_locale: false
   pages_fallback_only: false
   debug: false
@@ -110,6 +110,7 @@ cache:
   clear_images_by_default: false
   cli_compatibility: false
   lifetime: 604800
+  purge_max_age_days: 30
   gzip: false
   allow_webserver_gzip: false
   redis:
@@ -168,6 +169,7 @@ debugger:
     close_connection: true
   twig: true
 images:
+  adapter: gd
   default_image_quality: 85
   cache_all: false
   cache_perms: '0755'

@@ -1,5 +1,5 @@
 ---
-title: Packing & Shipping
+title: 'Packing & Shipping'
+exclude_from_nav: false
 ---
 
-This should have some content.

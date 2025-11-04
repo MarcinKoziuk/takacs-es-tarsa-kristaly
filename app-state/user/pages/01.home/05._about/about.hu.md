@@ -1,11 +1,5 @@
 ---
-title: Főoldal
-onpage_menu: true
-content:
-    items: '@self.modular'
-    order:
-        by: default
-        dir: asc
+title: Rólunk
 exclude_from_nav: false
 ---
 

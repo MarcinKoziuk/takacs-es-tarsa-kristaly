@@ -402,7 +402,7 @@ header {
     justify-content: center;
     background: rgb(24 25 28);
     border-top: 2px solid #000000;
-    border-bottom: 2px solid #000000;
+    /*border-bottom: 2px solid #000000;*/
 }
 
 .produkts-title {
